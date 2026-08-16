@@ -1,0 +1,80 @@
+/**
+ * Design tokens — source: PIPELINE.md section 1.
+ *
+ * Colors are stored as bare "H S% L%" triplets (not wrapped in hsl()) so
+ * Tailwind classes can compose them with opacity modifiers, e.g.
+ * bg-primary/10, via the hsl(var(--primary) / <alpha-value>) pattern in
+ * tailwind.config.ts.
+ *
+ * Three controls on the Theme & Accent settings screen (Phase 14) work by
+ * overwriting these variables at the :root (or a scoped) level at runtime:
+ *   - Accent picker  -> rewrites --primary / --primary-foreground
+ *   - Font size (A-/A/A+) -> rewrites --font-scale
+ *   - Radius (S/M/L) -> rewrites --radius
+ *   - Density (Comfortable/Compact) -> toggled via [data-density] attribute,
+ *     consumed through the DensityContext, not a raw CSS var.
+ */
+
+:root {
+  /* Brand */
+  --primary: 221 83% 53%; /* #2563EB */
+  --primary-foreground: 0 0% 100%;
+
+  /* Status / semantic */
+  --success: 142 76% 36%; /* #16A34A */
+  --success-foreground: 0 0% 100%;
+  --warning: 38 92% 50%; /* #F59E0B */
+  --warning-foreground: 0 0% 100%;
+  --danger: 0 72% 51%; /* #DC2626 */
+  --danger-foreground: 0 0% 100%;
+  --info: 262 83% 58%; /* #7C3AED */
+  --info-foreground: 0 0% 100%;
+  --sky: 199 89% 48%; /* #0EA5E9 */
+  --sky-foreground: 0 0% 100%;
+  --neutral: 215 16% 47%; /* #64748B */
+
+  /* Surfaces */
+  --bg-app: 210 40% 98%; /* #F8FAFC */
+  --bg-card: 0 0% 100%; /* #FFFFFF */
+  --border: 214 32% 91%; /* #E2E8F0 */
+  --input: 214 32% 91%;
+  --ring: 221 83% 53%;
+  --text-primary: 222 47% 11%; /* #0F172A */
+  --text-secondary: 215 16% 47%; /* #64748B */
+
+  /* Accent picker palette (Theme & Accent screen) — each is [color, foreground] */
+  --accent-blue: 221 83% 53%;
+  --accent-indigo: 239 84% 67%;
+  --accent-purple: 271 81% 56%;
+  --accent-violet: 258 90% 66%;
+  --accent-pink: 330 81% 60%;
+  --accent-rose: 350 89% 60%;
+  --accent-red: 0 72% 51%;
+  --accent-orange: 25 95% 53%;
+  --accent-amber: 38 92% 50%;
+  --accent-yellow: 48 96% 53%;
+  --accent-lime: 84 81% 44%;
+  --accent-green: 142 76% 36%;
+  --accent-teal: 173 80% 36%;
+  --accent-cyan: 189 94% 43%;
+  --accent-sky: 199 89% 48%;
+  --accent-slate: 215 16% 47%;
+
+  /* Type scale multiplier — Theme settings A- / A / A+ */
+  --font-scale: 1;
+
+  /* Radius — Theme settings Small / Medium / Large */
+  --radius: 8px;
+
+  /* Density — read by the density context; values used directly (not vars)
+     but documented here since they live on the same settings screen. */
+  --card-padding: 24px; /* comfortable, desktop */
+  --card-padding-mobile: 16px;
+  --row-height-comfortable: 56px;
+  --row-height-compact: 40px;
+
+  /* Layout */
+  --sidebar-width: 260px;
+  --sidebar-rail-width: 72px;
+  --topbar-height: 64px;
+}
